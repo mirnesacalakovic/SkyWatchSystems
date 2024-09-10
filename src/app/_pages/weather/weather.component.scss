@@ -1,0 +1,473 @@
+* {
+    box-sizing: border-box;
+}
+.p-dialog div {
+    border-radius: 16px;
+}
+
+h1, h3 {
+    font-weight: 300;
+}
+.brand-font{
+    font-family: "Josefin Sans", sans-serif;
+    font-weight: 500;
+}
+
+.brand-logo {
+    height: 3em;
+    margin-right: 1em;
+}
+
+.login{
+    text-decoration: none;
+    color: #ccc;
+    align-items: center;
+    align-content: center;
+}
+.login:hover{
+    color: #818181;
+}
+.login-logo {
+    height: 3em;
+}
+.login-text {
+    font-size: 1em;
+    margin-top: -0.5em;
+    margin-left: 0.3em;
+}
+
+.weather-app {
+    min-height: 100vh;
+    // background-image: url('/assets/images/day/cloudy.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: #fff;
+    position: relative;
+    transition: 50ms;
+    opacity: 1; /*change to 0 when finished*/
+}
+
+.weather-app::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.148);
+    z-index: 0;
+}
+
+.container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 2em 3em 4em 3em;
+}
+
+.container > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.informations {
+    display: flex;
+    flex-wrap: wrap;
+}
+.city-time, .temp, .weather {
+    margin: 0 1rem;
+}
+
+.city-time h1 {
+    margin: 0;
+    margin-bottom: 0.2rem;
+    font-size: 3em;
+}
+
+.temp {
+    font-size: 5em;
+    font-weight: 500;
+    margin: 0;
+}
+
+.weather img {
+    display: block;
+    margin: 0.5em 0;
+    height: 100%;
+} 
+
+.panel {
+    position: absolute;
+    width: 35%;
+    height: 100%;
+    top: 0;
+    right: 0;
+    background: rgba(110, 110, 110, 0.25);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    z-index: 1;
+    padding: 3em 2em;
+    overflow-y: scroll;
+}
+
+.panel form {
+    margin-bottom: 3em;
+}
+
+.submit {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 1.5em;
+    margin: 0;
+    border: none;
+    // background: #fa6d1b;
+    background: #ccc;
+    color: #fff;
+    cursor: pointer;
+    font-size: 1.2em;
+    transition: 0.4s;
+}
+
+.submit:hover {
+    background: #fff !important;
+    color: #000;
+}
+
+.search {
+    background: none;
+    border: none;
+    border-bottom: 1px #ccc solid;
+    padding: 0 1em 0.5em 0;
+    width: 80%;
+    color: #fff;
+    font-size: 1.1em;
+}
+
+.search:focus {
+    outline: none;
+}
+
+.search::placeholder{
+    color: #ccc;
+}
+
+.panel ul {
+    padding: 0 0 1em 0;
+    margin: 2em 0;
+    border-bottom: 1px #ccc solid;
+}
+
+.panel ul li {
+    color: #ccc;
+    margin: 2.5em 0 ;
+}
+
+.panel ul h4 {
+    margin: 3em 0;
+}
+
+.city {
+    display: block;
+    cursor: pointer;
+}
+
+.city:hover {
+    color: #fff;
+}
+.details li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.button-container {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.set-alarm  {
+    color: #ffffff;
+    padding: 0.5em;
+    margin: 1em;
+    border-radius: 1em;
+    background: rgba(168, 168, 168, 0.459);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(255, 255, 255, 0.29);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.23);
+    cursor: pointer;
+}
+.alarm-link {
+    background: transparent;
+    border: 1px solid rgb(255, 255, 255);
+}
+
+.button-container .p-dialog{
+    border-radius: 16px !important;
+}
+
+.icon {
+    height: 2rem;
+    width: 2rem;
+    margin: 0.3rem;
+    transition: all 0.2s;
+    cursor: pointer;
+    filter: grayscale(100%); /* Initial state in grayscale */
+  }
+  
+  input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+  }
+  
+  input[type="radio"]:checked + .icon,
+  input[type="radio"]:hover + .icon,
+  input[type="radio"]:focus + .icon {
+    filter: none; /* Remove grayscale on selected or hover state */
+  }
+  
+  input[class="thunderstorm"]:checked + .thunderstorm-icon,
+  input[class="thunderstorm"]:hover + .thunderstorm-icon,
+  input[class="thunderstorm"]:focus + .thunderstorm-icon {
+    transform: scale(1.2); /* Example: scale up the icon */
+    border-radius: 50px;
+    border: 1px solid rgb(56, 56, 56);
+  }
+  
+  input[class="rain"]:checked + .rain-icon,
+  input[class="rain"]:hover + .rain-icon,
+  input[class="rain"]:focus + .rain-icon {
+    transform: scale(1.2);
+    border-radius: 50px;
+    border: 1px solid rgb(56, 56, 56);
+  }
+  
+  input[class="heat"]:checked + .heat-icon,
+  input[class="heat"]:hover + .heat-icon,
+  input[class="heat"]:focus + .heat-icon {
+    transform: scale(1.2);
+    border-radius: 50px;
+    border: 1px solid rgb(56, 56, 56);
+  }
+  
+  input[class="snow"]:checked + .snow-icon,
+  input[class="snow"]:hover + .snow-icon,
+  input[class="snow"]:focus + .snow-icon {
+    transform: scale(1.2);
+    border-radius: 50px;
+    border: 1px solid rgb(56, 56, 56);
+  }
+  
+  input[class="wind"]:checked + .wind-icon,
+  input[class="wind"]:hover + .wind-icon,
+  input[class="wind"]:focus + .wind-icon {
+    transform: scale(1.2);
+    border-radius: 50px;
+    border: 1px solid rgb(56, 56, 56);
+  }
+  
+  .save-button-container {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .save-button {
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .save-button:hover {
+    background-color: #dcdcdc;
+  }
+  .save-button:active {
+    background-color: #bbbbbb;
+  }
+  
+  .link-decoration{
+    text-decoration: none; 
+    color: black;
+  }
+  .link-decoration:hover{
+    color: rgb(102, 102, 102);
+  }
+swiper-slide {
+    height: 100%;
+}
+swiper-container {
+    margin: 0 1em;
+}
+.slider-container {
+    padding: 0 2em;
+    // margin: 1em;
+    // background: rgba(255, 255, 255, 0.11);
+    border-radius: 16px;
+}
+
+.daily-container {
+    width: 85%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 0.5fr);
+    grid-auto-flow: row;
+    margin-inline: auto;
+    gap: 1rem;
+}
+
+::ng-deep .p-dialog .p-dialog-content {
+    background-color: rgba(0, 0, 0, 0.7); /* Tamna providna pozadina */
+    color: white; /* Boja teksta */
+    border-radius: 0 0 10px 10px; /* Zaobljene ivice */
+  }
+  
+  ::ng-deep .p-dialog .p-dialog-titlebar .p-dialog-header {
+    background-color: rgba(255, 255, 255, 0.2); /* Providna bela pozadina za naslov */
+    color: black; /* Boja teksta naslova */
+  }
+
+#locationInput {
+    position: relative;
+}
+
+.autocomplete-dropdown {
+    position: absolute;
+    width: 80%;
+    background: rgba(6, 6, 6, 0.484);
+    z-index: 1;
+    
+}
+
+.autocomplete-result {
+    border: 0;
+    outline: 0;
+    background-color: transparent;
+    width: 100%;
+    padding: 1em;
+    text-align: start;
+    font-family: 'Rubik', sans-serif;
+    font-size: 16px;
+    color: #ccc;
+    cursor: pointer;
+}
+
+.autocomplete-result:hover {
+    background-color: #000000;
+}
+.custom-alarms-container {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+    margin-top: 1em;
+  }
+  
+  .custom-alarms {
+    margin: 0;
+    width: 15rem;
+    background: rgba(255, 255, 255, 0.2); /* Providna pozadina */
+    backdrop-filter: blur(10px); /* Efekat zamagljenog stakla */
+    color: #ccc;
+    border-radius: 15px; /* Veći zaobljeni uglovi */
+    border: 1.9px solid rgba(255, 55, 0, 0.71); /* Providna granica */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); /* Blaga senka za dubinu */
+    padding: 10px;
+  }
+  
+  .custom-alarms img {
+    height: 30px;
+  }
+  
+  .inline {
+    display: flex;
+    justify-content: space-between;
+    text-transform: capitalize;
+    margin-bottom: 10px;
+  }
+  
+  .inline p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.8); /* Blaga transparentnost teksta */
+  }
+  
+  .custom-alarms a img {
+    margin-right: 5px;
+  }
+  
+  .card{
+    margin-top: 1em;
+  }
+
+.logout-text {
+    cursor: pointer;
+}
+.logout {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start !important;
+}
+.logout p {
+    margin-left: 5px;
+}
+.logout-info{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+}
+.logout-info-text {
+    margin-top: 1.5em;
+}
+.logout-link {
+    cursor: pointer;
+    color: #ccc;
+}
+.logout-link:hover {
+    color: #818181;
+    box-shadow: #fff;
+}
+.p-tooltip {
+    background-color: red !important;
+}
+.hiddenAlarm {
+    display: none;
+}
+  
+@media screen and (max-width: 800px) {
+    .panel, .container {
+        position: relative;
+        width: 100%;
+        top: initial;
+    }
+    
+}
+@media screen and (max-width: 500px) {
+    :host {
+        font-size: 12px;
+    }
+    
+}
+
+@media screen and (max-height: 300px) {
+    .weather-app{
+        min-height: 40em;
+    }
+}
+

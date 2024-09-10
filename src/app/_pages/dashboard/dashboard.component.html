@@ -1,0 +1,29 @@
+<div class="navbar">
+    <div id="locationInput">
+        <input type="text" class="search" name="location" placeholder="Search for location"
+               [(ngModel)]="locationQuery" (ngModelChange)="callForAutocomplete()" autocomplete="off">  
+        <div *ngIf="autocompleteResults.length > 0" id="dropdown" class="autocomplete-dropdown">
+            <button *ngFor="let result of autocompleteResults; let i = index" class="autocomplete-result" 
+                    (click)="locationSelected(result)">
+                {{ result.city }}, {{ result.country }}
+            </button>
+        </div>
+    </div>
+</div>
+
+@if (toggle === true) {
+    
+        <app-temp-chart></app-temp-chart>
+        <app-uv-index-chart></app-uv-index-chart>
+        <app-percip-chart></app-percip-chart>
+        <app-humidity-chart></app-humidity-chart>
+        <app-cloud-chart></app-cloud-chart>
+        <app-wind-chart></app-wind-chart>
+        <app-snow-chart></app-snow-chart>
+
+} @else {
+    <div style=" display: flex; align-content: center; justify-content: center;">
+        <h2 style="color: #ccc">Search for a location to repesent a chart data</h2>
+    </div>
+
+}

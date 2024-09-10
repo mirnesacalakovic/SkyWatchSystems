@@ -1,0 +1,58 @@
+.navbar {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.25);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    
+}
+
+#locationInput {
+    position: relative;
+}
+
+.autocomplete-dropdown {
+    position: absolute;
+    width: 20em;
+    background: rgba(6, 6, 6, 0.484);
+    z-index: 9999;
+    
+}
+
+.autocomplete-result {
+    border: 0;
+    outline: 0;
+    background-color: transparent;
+    width: 100%;
+    padding: 1em;
+    text-align: start;
+    font-family: 'Rubik', sans-serif;
+    font-size: 16px;
+    color: #ccc;
+    cursor: pointer;
+    z-index: 999;
+}
+
+.autocomplete-result:hover {
+    background-color: #000000;
+}
+
+.search {
+    background: rgba(0, 0, 0, 0.269);
+    border: none;
+    border-radius: 1em;
+    padding: 1.5em;
+    width: 20em;
+    color: #fff;
+    font-size: 1em;
+    margin: 1em;
+}
+
+.search:focus {
+    outline: none;
+}
+
+.search::placeholder{
+    color: #ccc;
+}

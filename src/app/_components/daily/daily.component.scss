@@ -1,0 +1,66 @@
+.card {
+    color: #ccc;
+    /* From https://css.glass */
+    background: rgba(255, 255, 255, 0.11);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.279);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.23);
+    width: 20em;
+    height: 16em;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    
+}
+
+.left-con{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: start;
+    justify-content: space-evenly;
+    gap: 2em;
+    height: fit-content;
+}
+.date p{
+    margin: 0;
+}
+.temp-con p{
+    margin: 0;
+}
+.temp{
+    font-size: 3.5em;
+    font-weight: 600; 
+    color: rgb(255, 255, 255);
+    padding-top: 1.5rem;
+    margin-bottom: 0;
+}
+
+.details {
+    color: #ccc;
+    font-size: 0.8em;
+    text-align: end;
+}
+
+.details img {
+    padding-bottom: 2em;
+}
+
+
+.change-background {
+    background: rgba(255, 255, 255, 0.292);
+    // background: #0a3e549c;
+    border: #fff 2px solid;
+}
+.change-background p {
+    color: rgb(255, 255, 255);
+}
+.change-background .temp {
+    font-weight: 600;
+    color: #fff;
+}
+

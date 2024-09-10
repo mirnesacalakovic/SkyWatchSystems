@@ -1,0 +1,51 @@
+.custom-alarms-container {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+  }
+  
+  .custom-alarms {
+    margin: 0;
+    width: 20rem;
+    background: rgba(255, 255, 255, 0.2); /* Providna pozadina */
+    backdrop-filter: blur(10px); /* Efekat zamagljenog stakla */
+    color: #ccc;
+    border-radius: 15px; /* Veći zaobljeni uglovi */
+    border: 1.9px solid rgba(255, 55, 0, 0.71); /* Providna granica */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); /* Blaga senka za dubinu */
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+  }
+  .custom-alarms img {
+    height: 30px;
+  }
+  .action-container {
+    margin-top: 1em;
+    display: flex;
+    justify-content: flex-end;
+  }
+  .icon-img{
+    width: 23px; 
+    height: 23px !important;
+
+  }
+  
+  .inline {
+    display: flex;
+    justify-content: space-between;
+    text-transform: capitalize;
+    margin-bottom: 10px;
+  }
+  
+  .inline p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.8); /* Blaga transparentnost teksta */
+  }
+  
+  .custom-alarms a img {
+    margin-right: 5px;
+  }
+  

@@ -1,0 +1,139 @@
+:host {
+    background-image: url('/assets/images/night/cloudy.jpg');
+    background-repeat: repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+.content {
+    width: 400px;
+    padding: 40px 30px;
+    margin: auto;
+    margin-top: 3em;
+    border-radius: 10px;
+    box-shadow: -3px -3px 7px #ffffff73,
+                 2px 2px 5px rgba(94,104,121,0.288);
+    background: rgba(255, 255, 255, 0.21);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.13);
+    transition: .4s ease-in-out;
+  }
+
+  .content:hover {
+    // transform: scale(1.01);
+    border: 1px solid rgb(255, 255, 255);
+    box-shadow: #BABECC;
+  }
+  
+.brand-font{
+    font-family: "Josefin Sans", sans-serif;
+    font-weight: 500;
+    text-decoration: none;
+    color: white;
+    font-size: 1.17em;
+}
+
+.brand {
+    padding-top: 3em;
+    padding-left: 3em;
+}
+  
+  .content .text {
+    font-size: 33px;
+    font-weight: 600;
+    margin-bottom: 35px;
+    color: white;
+  }
+  
+  .field {
+    height: 50px;
+    width: 100%;
+    display: flex;
+    position: relative;
+  }
+  
+  .field:nth-child(2) {
+    margin-top: 15px;
+  }
+  
+  .field .input {
+    height: 100%;
+    width: 100%;
+    padding-left: 45px;
+    outline: none;
+    border: none;
+    font-size: 18px;
+    background: #dde1e7;
+    color: #595959;
+    border-radius: 25px;
+    box-shadow: inset 2px 2px 5px #BABECC,
+                inset -5px -5px 10px #ffffff73;
+  }
+  
+  .field .input:focus {
+    box-shadow: inset 1px 1px 2px #BABECC,
+                inset -1px -1px 2px #ffffff73;
+  }
+  
+  .field .span {
+    position: absolute;
+    color: #595959;
+    width: 50px;
+    line-height: 55px;
+  }
+  
+  .field .label {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 45px;
+    pointer-events: none;
+    color: #666666;
+  }
+  
+  .field .input:valid ~ label {
+    opacity: 0;
+  }
+  
+  
+  .button {
+    margin: 20px 0;
+    width: 100%;
+    height: 50px;
+    font-size: 18px;
+    line-height: 50px;
+    font-weight: 600;
+    background: #dde1e7;
+    border-radius: 25px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    color: #595959;
+    box-shadow: 2px 2px 5px #BABECC,
+               -5px -5px 10px #ffffff73;
+  }
+  
+  .button:focus {
+    color: #398684;
+    box-shadow: inset 2px 2px 5px #BABECC,
+               inset -5px -5px 10px #ffffff73;
+  }
+  
+  .sign-up {
+    margin: 10px 0;
+    color: #ccc;
+    font-size: 16px;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .sign-up a {
+    text-decoration: none;
+    color: #ccc;
+  }
+  
+  .sign-up a:hover {
+    color: #ffffff;
+  }

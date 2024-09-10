@@ -1,1 +1,85 @@
-/* You can add global styles to this file, and also import other style files */
+// @import '@taiga-ui/core/styles/taiga-ui-theme.less';
+// @import '@taiga-ui/core/styles/taiga-ui-fonts.less';
+// @import '@taiga-ui/styles/taiga-ui-global.less';
+@import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "primeng/resources/primeng.css";
+
+body {
+    margin: 0;
+    font-family: 'Rubik', sans-serif;
+   
+  }
+  
+
+  .sunny-background {
+    background-image: url('/assets/images/day/sunny.jpg');
+    background-repeat: repeat;
+    background-attachment: fixed;
+    background-size: cover;
+  }
+  
+  .rainy-background {
+    background-image: url('/assets/images/day/rainy.jpg');
+    background-repeat: repeat;
+    background-attachment: fixed;
+    background-size: cover;
+  }
+  
+  .snowy-background {
+    background-image: url('/assets/images/day/snowy.jpg');
+    background-repeat: repeat;
+    background-attachment: fixed;
+    background-size: cover;
+  }
+  .cloudy-background {
+    background-image: url('/assets/images/night/cloudy.jpg');
+    background-repeat: repeat;
+    background-attachment: fixed;
+    background-size: cover;
+  }
+  .clear-night-background{
+    background-image: url('/assets/images/night/clear.jpg');
+    background-repeat: repeat;
+    background-attachment: fixed;
+    background-size: cover;
+  }
+  .partly-cloudy-background {
+    background-image: url('/assets/images/day/partly-cloudy.jpg');
+    background-repeat: repeat;
+    background-attachment: fixed;
+    background-size: cover;
+  }
+
+  body {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    overflow-x: hidden;
+  
+  }
+  
+  .repeating-blurred-background::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    // background-image: url('/assets/images/night/cloudy.jpg');
+    // background-repeat: repeat;
+    // background-attachment: fixed;
+    // background-size: cover;
+    filter: blur(20px);
+    background: rgba(43, 43, 43, 0.365);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    // background-color: rgba(0, 0, 0, 0.79); /* Crni overlay sa 40% providnosti */
+    z-index: -1; /* Ovo osigurava da pozadina bude iza svih komponenti */
+  }
+  
+  .component-container {
+    position: relative;
+    z-index: 1; /* Ovaj z-index osigurava da vaši sadržaji budu ispred pozadine */
+  }
+

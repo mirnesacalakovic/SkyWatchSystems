@@ -1,0 +1,16 @@
+<div class="alarm-container">
+    @for (alarm of alarms(); track $index) {
+    <div class="card" [class.yellow]="checkYellow(alarm)" [class.orange]="checkOrange(alarm)"
+        [class.red]="checkRed(alarm)">
+        <h3>{{alarm.event}}</h3>
+        <div style="text-align: center;">
+            <p>{{alarm.headline}}</p>
+            <p style="font-weight: 700;">{{alarm.description}}</p>
+        </div>
+        <div>
+            <p>Starts: {{ alarm.onset | date: 'medium' }} </p>
+            <p>Ends: {{ alarm.ends | date: 'medium' }}</p>
+        </div>
+    </div>
+    }
+</div>

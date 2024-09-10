@@ -1,0 +1,11 @@
+<div class="card">
+    
+    <p style="font-size: larger; font-weight: 400;">{{hourData?.datetime?.slice(0, -3) }}  </p>
+    <img src="/assets/icons/{{hourData?.icon}}.png" alt="" width="50px">
+    <div class="temp">
+        <p class="details">{{hourData?.temp | number: '0.0-0'}}&#176;</p>
+        <p class="condition"> <img src="/assets/icons/drop.png" alt="rain drop" width="15px" style="margin-top: 10px;"> {{hourData?.precipprob}}%</p>  
+    </div>
+    
+    
+</div>

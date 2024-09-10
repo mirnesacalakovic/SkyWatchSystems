@@ -1,0 +1,282 @@
+<div class="weather-app" [style.background-image]="weatherImage">
+  <div class="container">
+    <div class="brand">
+      <h3 class="brand-font">Sky Watch Systems</h3>
+    </div>
+    @if (!currentUser) {
+    <a routerLink="/login" class="login">
+      <img class="login-logo" src="/assets/icons/login-icon.png" alt="login">
+      <p class="login-text">Login</p>
+    </a>
+    }@else {
+    <div class="logout">
+      <div class="logout-info">
+        <img class="login-logo logout-logo" src="/assets/icons/loggedIn.png" alt="login" pTooltip={{currentUser.email}}
+          tooltipPosition="right" placeholder="Right" />
+      </div>
+      <a class="logout-link" (click)="logout()">
+        <p>Log out</p>
+      </a>
+    </div>
+    }
+
+    <div class="informations">
+      <h1 class="temp">{{currentData?.temp}}&#176;</h1>
+      <div class="city-time">
+        @if (locationService.location()) {
+        <h1 class="name">{{ address }}</h1>
+        }@else {
+        <p>You have to enable your location for weather data.</p>
+        <!-- <p>{{weatherService.getWeatherData('Novi Pazar')}}</p>  salje infinte loop requesta -->
+        }
+        <small>
+          <span class="time">{{currentTime}}</span>
+          -
+          <span class="date">{{currentDate}}</span>
+        </small>
+      </div>
+      <div class="weather">
+        <img src="/assets/icons/{{currentData?.icon}}.png" alt="icon" class="icon" width="50" height="50" />
+        <span class="condition">{{currentData?.conditions}}</span>
+      </div>
+    </div>
+  </div>
+  <div class="panel">
+    <div id="locationInput">
+      <input type="text" class="search" placeholder="Search Location..." [(ngModel)]="locationQuery"
+        (ngModelChange)="callForAutocomplete()">
+      @if (autocompleteResults.length > 0) {
+      <div id="dropdown" class="autocomplete-dropdown">
+        @for (result of autocompleteResults; track $index) {
+        <button class="autocomplete-result" (click)="locationSelected(result)">
+          {{ result.city }}, {{result.country}}
+        </button>
+        }
+      </div>
+      }
+    </div>
+
+    <ul class="cities">
+      <li class="city"> <a routerLink="/dashboard">New York</a></li>
+      <li class="city"> <a routerLink="/dashboard2">California</a></li>
+      <li class="city">Paris</li>
+      <li class="city">Tokyo</li>
+    </ul>
+
+    <ul class="details">
+      <h4>Weather Details</h4>
+      <li>
+        <span>{{infoData?.description}}</span>
+      </li>
+      <li>
+        <span>Feels like:</span>
+        <span class="cloud">{{currentData?.feelslike}}&#176;</span>
+      </li>
+      <li>
+        <span>Cloudy</span>
+        <span class="cloud">{{currentData?.cloudcover | number: '1.0-0' }}% </span>
+      </li>
+      <li>
+        <span>Humidity</span>
+        <span class="humidity">{{currentData?.humidity | number: '1.0-0' }}% </span>
+      </li>
+      <li>
+        <span>Wind</span>
+        <span class="wind">{{currentData?.windspeed}}km/h</span>
+      </li>
+      <li>
+        <span>Sunrise:</span>
+        <span class="cloud">{{formatTime(currentData?.sunrise ?? "")}}</span>
+      </li>
+      <li>
+        <span>Sunset:</span>
+        <span class="cloud">{{formatTime(currentData?.sunset ?? "")}}</span>
+      </li>
+    </ul>
+  </div>
+</div>
+
+
+
+<div class="button-container">
+  <button (click)="toggleCollapse()" class="set-alarm">
+    <!-- <img src="/assets/icons/icons2/alert-2.png" alt="Alerts"> -->
+     <p>Show Alarms</p>
+  </button>
+  <button (click)="showDialog()" class="set-alarm">
+    Set Your Own Alarm!
+  </button>
+  @if (currentUser) {
+  <p-dialog header="Set your own Alarm" [modal]="true" [(visible)]="visible" [style]="{ width: '40rem' }">
+
+    <div class="card">
+      <div class="rating-container">
+        <div class="rating">
+          <form class="rating-form">
+
+            <label for="thunderstorm">
+              <input type="radio" name="rating" class="thunderstorm" id="thunderstorm" value="thunderstorm"
+                (change)="onSelect('thunderstorm')" />
+              <img src="assets/icons/icons2/thunderstorm.png" class="icon thunderstorm-icon" alt="Thunderstorm" />
+            </label>
+
+            <label for="rain">
+              <input type="radio" name="rating" class="rain" id="rain" value="rain" (change)="onSelect('rain')" />
+              <img src="assets/icons/icons2/rain.png" class="icon rain-icon" alt="Rain" />
+            </label>
+
+            <label for="heat">
+              <input type="radio" name="rating" class="heat" id="heat" value="heat" (change)="onSelect('heat')" />
+              <img src="assets/icons/icons2/heat.png" class="icon heat-icon" alt="Heat" />
+            </label>
+
+            <label for="snow">
+              <input type="radio" name="rating" class="snow" id="snow" value="snow" (change)="onSelect('snow')" />
+              <img src="assets/icons/icons2/snow.png" class="icon snow-icon" alt="Snow" />
+            </label>
+
+            <label for="wind">
+              <input type="radio" name="rating" class="wind" id="wind" value="wind" (change)="onSelect('wind')" />
+              <img src="assets/icons/icons2/wind.png" class="icon wind-icon" alt="Wind" />
+            </label>
+          </form>
+        </div>
+      </div>
+
+      <div class="info-container">
+        <div *ngIf="selected === 'thunderstorm'">
+          <h3 style="font-weight: 600;">Thunderstorm</h3>
+          <label>Precipitation (mm/hr):</label>
+          <input type="range" min="0" max="50" [(ngModel)]="thunderstorm.precip" />
+          <p>Selected: {{ thunderstorm.precip }} mm/hr</p>
+
+          <label>Cloud Cover (%):</label>
+          <input type="range" min="0" max="100" [(ngModel)]="thunderstorm.cloudcover" />
+          <p>Selected: {{ thunderstorm.cloudcover }} %</p>
+          <button class="save-button" (click)="saveAlarm('thunderstorm')">Save Thunderstorm Alarm</button>
+        </div>
+
+        <div *ngIf="selected === 'rain'">
+          <h3 style="font-weight: 600;">Rain</h3>
+          <label>Precipitation (mm/hr):</label>
+          <input type="range" min="0" max="50" [(ngModel)]="rain.precip" />
+          <p>Selected: {{ rain.precip }} mm/hr</p>
+          <button class="save-button" (click)="saveAlarm('rain')">Save Rain Alarm</button>
+        </div>
+
+        <div *ngIf="selected === 'heat'">
+          <h3 style="font-weight: 600;">Heat</h3>
+          <label>Temperature (°C):</label>
+          <input type="range" min="20" max="50" [(ngModel)]="heat.temp" />
+          <p>Selected: {{ heat.temp }} °C</p>
+
+          <label>UV Index:</label>
+          <input type="range" min="0" max="11" [(ngModel)]="heat.uvIndex" />
+          <p>Selected: UV Index {{ heat.uvIndex }}</p>
+          <button class="save-button" (click)="saveAlarm('heat')">Save Heat Alarm</button>
+        </div>
+
+        <div *ngIf="selected === 'snow'">
+          <h3 style="font-weight: 600;">Snow</h3>
+          <label>Snowfall (mm/hr):</label>
+          <input type="range" min="0" max="50" [(ngModel)]="snow.snow" />
+          <p>Selected: {{ snow.snow }} mm/hr</p>
+
+          <label>Temperature (°C):</label>
+          <input type="range" min="-20" max="-1" [(ngModel)]="snow.temp" />
+          <p>Selected: {{ snow.temp }} °C</p>
+          <button class="save-button" (click)="saveAlarm('snow')">Save Snow Alarm</button>
+        </div>
+
+        <div *ngIf="selected === 'wind'">
+          <h3 style="font-weight: 600;">Wind</h3>
+          <label>Wind Speed (km/h):</label>
+          <input type="range" min="0" max="100" [(ngModel)]="wind.windspeed" />
+          <p>Selected: {{ wind.windspeed }} km/h</p>
+
+          <label>Wind Gust (km/h):</label>
+          <input type="range" min="0" max="150" [(ngModel)]="wind.windgust" />
+          <p>Selected: {{ wind.windgust }} km/h</p>
+          <button class="save-button" (click)="saveAlarm('wind')">Save Wind Alarm</button>
+        </div>
+      </div>
+
+    </div>
+
+  </p-dialog>
+  }
+  @else {
+  <p-dialog [modal]="true" [(visible)]="visible" [style]="{ width: '40rem' }">
+    <div style=" display: flex; flex-direction: column; align-items: center; justify-content: center;">
+      <img src="/assets/icons/icons2/log-in.png" alt="">
+      <a routerLink="/login" class="link-decoration">
+        <h2>Sign up to set your custom alarms!</h2>
+      </a>
+    </div>
+  </p-dialog>
+
+  }
+
+  @if (currentUser) {
+
+  <button class="set-alarm alarm-link" (click)="showDialog2()">Show my Custom Alarms</button>
+
+  <p-dialog header="My Alarms:" [modal]="true" [(visible)]="visible2" [style]="{ width: '40rem' }">
+    <div *ngIf="alarms && alarms.length > 0; else noAlarms" class="custom-alarms-container">
+      <div *ngFor="let alarm of alarms" class="custom-alarms">
+        <div class="inline">
+          <p class="margin-top: 16px">Type: </p>
+          <div style="display: flex; align-content: center; justify-content: center;">
+              <p style="margin-top: 4px;">{{alarm.type}}</p>
+              <img src="/assets/icons/icons2/{{alarm.type}}.png">
+          </div>
+      </div>
+        <div class="inline" *ngFor="let condition of getFilteredConditions(alarm.conditions)">
+          <p>{{ condition.key }}: </p>
+          <p>{{ condition.value }}</p>
+        </div>
+        <a (click)="deleteAlarmAction(alarm.id)" style="cursor: pointer;"><img src="/assets/icons/icons2/trash.png"
+            style="width: 23px; height: 20px;"></a>
+      </div>
+    </div>
+
+    <ng-template #noAlarms>
+      <p>No alarms found.</p>
+    </ng-template>
+  </p-dialog>
+
+  }
+</div>
+
+
+
+
+<div [ngClass]="{'hiddenAlarm': !visibleAlarm}" >
+    
+  <app-activated-alarms></app-activated-alarms>
+  <app-alarm></app-alarm>
+
+</div>
+
+
+
+
+<div class="slider-container">
+  <p style="color: #ccccccb6; padding-left: 1em; padding-top: 1em; text-transform: uppercase; ">Hourly Forecast:</p>
+
+  <swiper-container #swiperContainer init="false" class="swiper">
+    @for (hourData of weatherService.getHourlyData(); track $index) {
+    <swiper-slide>
+      <app-hourly [hourData]="hourData"></app-hourly>
+    </swiper-slide>
+    }
+  </swiper-container>
+</div>
+
+<p style="color: #ccccccb6; padding-left: 3em; padding-top: 1em; text-transform: uppercase; ">15-day Forecast:</p>
+
+<div class="daily-container">
+  @for (dailyData of weatherService.getDaysData(); track $index) {
+  <app-daily [dailyData]="dailyData"></app-daily>
+  }
+</div>

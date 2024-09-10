@@ -1,0 +1,14 @@
+<div class="canvas">
+  <canvas
+  baseChart
+  [data]="barChartData()"
+  [options]="barChartOptions"
+  [type]="barChartType"
+  (chartHover)="chartHovered($event)"
+  (chartClick)="chartClicked($event)"
+  >
+  </canvas>
+  <button class="type-button" (click)="randomize()">
+    Change a type
+    </button>
+</div>

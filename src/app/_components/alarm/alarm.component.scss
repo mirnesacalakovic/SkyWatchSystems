@@ -1,0 +1,48 @@
+.alarm-container {
+    width: 100%;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 1em;
+    margin-top: 2em;
+    flex-wrap: wrap;
+}
+
+
+.card {
+    color: #ccc;
+    /* From https://css.glass */
+    background: rgba(164, 164, 164, 0.251);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.279);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.23);
+    width: 25em;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    gap: 1em;
+}
+
+.yellow {
+    border: 2px solid rgba(255, 242, 0, 0.831);
+}
+.yellow h3 {
+    color: rgb(255, 242, 0);
+}
+.orange {
+    border: 2px solid rgba(241, 116, 0, 0.836);
+}
+.orange h3 {
+    color: rgb(241, 116, 0);
+}
+.red {
+    border: 2px solid rgba(255, 0, 17, 0.868);
+}
+.red h3 {
+    color: rgb(255, 0, 17);
+}

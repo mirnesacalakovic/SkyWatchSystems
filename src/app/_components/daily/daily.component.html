@@ -1,0 +1,27 @@
+<div class="card" id="daily-card">
+    <div class="left-con">
+        <div class="date">
+            <p id="day" style="text-transform: uppercase; color: #ffffffef;">{{ dateToObj | date: "cccc" }}</p>
+            <p>{{dateToObj | date: "longDate"}}</p>
+            @if (todaysDate == true) {
+                {{addClass()}}
+            }
+        </div>
+        
+        <div class="temp-con">
+            <p class="temp">{{dailyData?.temp | number: '0.0-0'}}&#176;</p>
+            <p>Feels like: {{dailyData?.feelslike | number: '0.0-0'}}&#176;</p>
+        </div>
+        
+
+    </div>
+    
+    <div class="details">
+        
+        <img src="/assets/icons/{{dailyData?.icon}}.png" alt="" width="60px">
+        <p>{{dailyData?.conditions}}</p>
+        <p>Min: {{dailyData?.tempmin | number: '0.0-0'}}&#176;</p>
+        <p>Max: {{dailyData?.tempmax | number: '0.0-0'}}&#176;</p>
+        <p>UV index: {{dailyData?.uvindex}}</p>
+    </div>
+</div>

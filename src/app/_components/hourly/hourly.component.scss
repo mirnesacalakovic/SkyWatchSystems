@@ -1,0 +1,31 @@
+.card {
+    color: #ccc;
+    /* From https://css.glass */
+    background: rgba(0, 0, 0, 0.205);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(204, 204, 204, 0.187);
+    backdrop-filter: blur(5.4px);
+    -webkit-backdrop-filter: blur(5.4px);
+    border: 1px solid rgba(255, 255, 255, 0.23);
+    width: 14em;
+    height: 14em;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: space-evenly;
+    margin-bottom: 2em;
+}
+.condition {
+    margin: 0;
+    margin-bottom: 1em;
+}
+.details{
+    margin: 0.5em 0em 0em 0.5em;
+    font-size: 2.5em;
+    color: rgb(255, 255, 255);
+    font-weight: 500;
+}
+
+
