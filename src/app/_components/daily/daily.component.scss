@@ -49,7 +49,23 @@
 .details img {
     padding-bottom: 2em;
 }
-
+.navbar {
+    display: flex;
+    justify-content: space-between;
+}
+.navbar a {
+    text-decoration: none;
+    color: #fff;
+}
+.brand {
+    padding-right: 2em;
+    justify-self: center;
+    align-self: center;
+}
+.brand-font{
+    font-family: "Josefin Sans", sans-serif;
+    font-weight: 500;
+}
 
 .change-background {
     background: rgba(255, 255, 255, 0.292);

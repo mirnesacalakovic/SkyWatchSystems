@@ -19,12 +19,21 @@
     -webkit-backdrop-filter: blur(4px);
     border: 1px solid rgba(255, 255, 255, 0.13);
     transition: .4s ease-in-out;
+    
   }
 
   .content:hover {
     // transform: scale(1.01);
     border: 1px solid rgb(255, 255, 255);
     box-shadow: #BABECC;
+  }
+
+  .content {
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
   }
   
 .brand-font{

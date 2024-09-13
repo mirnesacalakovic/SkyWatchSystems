@@ -7,23 +7,27 @@ import { DashboardComponent } from './_pages/dashboard/dashboard.component';
 import { authGuard } from './_guards/auth.guard';
 import { historyResolver } from './_resolvers/history.resolver';
 import { PercipChartComponent } from './_components/percip-chart/percip-chart.component';
+import { TechnicalDashboardComponent } from './_pages/technical-dashboard/technical-dashboard.component';
+import { DailyDetailsComponent } from './_pages/daily-details/daily-details.component';
+import { adminGuard } from './_guards/admin.guard';
+import { techGuard } from './_guards/tech.guard';
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'daily-details/:id', component: DailyDetailsComponent },
   {
-    path: 'dashboard',
+    path: 'admin/dashboard',
     component: DashboardComponent,
     resolve: historyResolver,
-    // canActivate: [authGuard],
-    
+    runGuardsAndResolvers: 'always',
+    canActivate: [authGuard, adminGuard],
   },
   {
-    path: 'dashboard2',
-    component: PercipChartComponent,
+    path: 'technical/dashboard',
+    component: TechnicalDashboardComponent,
     resolve: historyResolver,
-    // canActivate: [authGuard],
-    
+    canActivate: [authGuard, techGuard],
   },
   { path: '', component: WeatherComponent, pathMatch: 'full' },
 ];

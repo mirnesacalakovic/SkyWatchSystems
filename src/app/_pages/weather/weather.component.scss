@@ -180,9 +180,15 @@ h1, h3 {
     display: block;
     cursor: pointer;
 }
-
-.city:hover {
+.city a {
+    text-decoration: none;
     color: #fff;
+}
+.city:hover {
+    color: #949494;
+}
+.cities {
+    padding: 0px !important;
 }
 .details li {
     display: flex;
@@ -195,23 +201,23 @@ h1, h3 {
     display: flex;
     justify-content: flex-end;
 }
-
+.set-alarm img{
+    width: 20px;
+    height: 20px;
+    margin: 5px;
+}
 .set-alarm  {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     color: #ffffff;
     padding: 0.5em;
     margin: 1em;
     border-radius: 1em;
-    background: rgba(168, 168, 168, 0.459);
-    border-radius: 16px;
-    box-shadow: 0 4px 30px rgba(255, 255, 255, 0.29);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.23);
-    cursor: pointer;
-}
-.alarm-link {
+    box-shadow: 0 4px 30px rgba(255, 255, 255, 0.176);
     background: transparent;
     border: 1px solid rgb(255, 255, 255);
+    cursor: pointer;
 }
 
 .button-container .p-dialog{
@@ -302,7 +308,7 @@ h1, h3 {
   
   .link-decoration{
     text-decoration: none; 
-    color: black;
+    color: rgb(255, 255, 255);
   }
   .link-decoration:hover{
     color: rgb(102, 102, 102);
@@ -315,19 +321,26 @@ swiper-container {
 }
 .slider-container {
     padding: 0 2em;
-    // margin: 1em;
-    // background: rgba(255, 255, 255, 0.11);
     border-radius: 16px;
 }
 
 .daily-container {
     width: 85%;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, 0.5fr);
-    grid-auto-flow: row;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     margin-inline: auto;
     gap: 1rem;
+    place-items: center;
+}
+
+.daily-div {
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transform: scale(1);
+    border-radius: 16px;
+}
+.daily-div:hover {
+    transform: scale(1.05); 
 }
 
 ::ng-deep .p-dialog .p-dialog-content {
@@ -438,6 +451,8 @@ swiper-container {
 .logout-link {
     cursor: pointer;
     color: #ccc;
+    margin-top: -13px;
+    margin-left: -5px;
 }
 .logout-link:hover {
     color: #818181;

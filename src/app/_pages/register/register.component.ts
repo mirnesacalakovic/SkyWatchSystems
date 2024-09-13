@@ -6,6 +6,7 @@ import { LoginDto } from '../../_dtos/loginDto';
 import { User } from '../../_models/user/user';
 import { RegisterDto } from '../../_dtos/registerDto';
 import { NgFor, NgIf } from '@angular/common';
+import { TextInputComponent } from "../../_forms/text-input/text-input.component";
 
 @Component({
   selector: 'app-register',
@@ -14,8 +15,9 @@ import { NgFor, NgIf } from '@angular/common';
     RouterLink,
     ReactiveFormsModule,
     NgIf,
-    NgFor
-  ],
+    NgFor,
+    TextInputComponent
+],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
 })
@@ -67,8 +69,8 @@ get confirmPassword() { return this.registrationForm.get('confirmPassword'); }
         console.log('Register successful');
       },
       error: (err) => {
-        console.log(err);
-        this.validationErrors = err;
+        console.log(Object.values(err.error.errors).flatMap((v: any) => v[0]));
+        this.validationErrors = Object.values(err.error.errors).flatMap((v: any) => v[0]);
       }
     })
   }

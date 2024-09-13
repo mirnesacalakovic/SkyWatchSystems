@@ -1,11 +1,13 @@
 import { Injectable, signal, WritableSignal } from '@angular/core';
-import { environment } from '../../environments/environment.development';
 import { User } from '../_models/user/user';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { response } from 'express';
 import { map } from 'rxjs';
 import { AlarmService } from './alarm.service';
+import { debug, error } from 'console';
+import { ToastrService } from 'ngx-toastr';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -17,7 +19,8 @@ export class AuthService {
   constructor(
     private http: HttpClient,
     private router: Router,
-    private alarmService: AlarmService
+    private alarmService: AlarmService,
+    private toastr: ToastrService
   ) {}
 
   login(model: any) {
@@ -26,6 +29,10 @@ export class AuthService {
         const user = response;
         if (user) {
           this.setCurrentUser(user);
+          if (user.roles.includes('Admin'))
+            this.router.navigate(['/admin/dashboard']);
+          if (user.roles.includes('Tech'))
+            this.router.navigate(['/technical/dashboard']);
         }
       })
     );

@@ -1,16 +1,15 @@
-// @import '@taiga-ui/core/styles/taiga-ui-theme.less';
-// @import '@taiga-ui/core/styles/taiga-ui-fonts.less';
-// @import '@taiga-ui/styles/taiga-ui-global.less';
 @import "primeng/resources/themes/lara-light-blue/theme.css";
 @import "primeng/resources/primeng.css";
 
 body {
     margin: 0;
     font-family: 'Rubik', sans-serif;
-   
+    background-image: url('/assets/images/day/sunny.jpg');
+    background-repeat: repeat;
+    background-attachment: fixed;
+    background-size: cover;
   }
   
-
   .sunny-background {
     background-image: url('/assets/images/day/sunny.jpg');
     background-repeat: repeat;
@@ -56,7 +55,6 @@ body {
     padding: 0;
     min-height: 100vh;
     overflow-x: hidden;
-  
   }
   
   .repeating-blurred-background::before {
@@ -66,20 +64,15 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    // background-image: url('/assets/images/night/cloudy.jpg');
-    // background-repeat: repeat;
-    // background-attachment: fixed;
-    // background-size: cover;
     filter: blur(20px);
-    background: rgba(43, 43, 43, 0.365);
+    background: rgba(43, 43, 43, 0.5);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    // background-color: rgba(0, 0, 0, 0.79); /* Crni overlay sa 40% providnosti */
-    z-index: -1; /* Ovo osigurava da pozadina bude iza svih komponenti */
+    z-index: -1; 
   }
   
   .component-container {
     position: relative;
-    z-index: 1; /* Ovaj z-index osigurava da vaši sadržaji budu ispred pozadine */
+    z-index: 1;
   }
 

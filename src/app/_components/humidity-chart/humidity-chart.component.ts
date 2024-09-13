@@ -12,7 +12,35 @@ import { HistoryService } from '../../_services/history.service';
   styleUrl: './humidity-chart.component.scss'
 })
 export class HumidityChartComponent {
-  public radarChartOptions: ChartConfiguration['options'] = {};
+  public radarChartOptions: ChartConfiguration['options'] = {
+    responsive: true,
+    scales: {
+      r: { // 'r' je korišćen za radijalne osi u radar chartu
+        grid: {
+          color: 'rgba(239, 246, 249, 0.2)', // Boja pomoćnih linija (grid)
+        },
+        angleLines: {
+          color: 'rgba(239, 246, 249, 0.2)', // Boja uglovnih linija (linije od centra do rubova)
+        },
+        pointLabels: {
+          color: 'rgb(239, 246, 249)', // Boja tekstova (labela) oko grafikona
+        },
+        ticks: {
+          color: 'rgb(110, 110, 110)', // Boja tick oznaka (brojeva na radijalnim linijama)
+          callback: function(value: number | string) {
+            return value + '%'; // Dodaje simbol ° uz vrednosti na Y osi
+          }  
+        },
+      },
+    },
+    plugins: {
+      legend: {
+        labels: {
+          color: 'rgb(239, 246, 249)', // Boja tekstova u legendi (label dataset-a)
+        },
+      },
+    },
+  };
   constructor(private historyService: HistoryService){}
   
   public radarChartLabels: Signal<string[]> = computed(() => {

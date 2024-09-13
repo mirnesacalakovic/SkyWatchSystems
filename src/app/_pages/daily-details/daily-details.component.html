@@ -1,0 +1,93 @@
+<div class="navbar">
+    <div class="brand">
+        <a href="#" class="brand-font"> < Sky Watch Systems</a>
+    </div>
+    <div class="main">
+        <h2>Details for {{ dailyData()?.datetime | date: 'fullDate'}}</h2>
+    </div>
+    <p>{{ dailyData()?.description }}</p>
+    <div class="main-temp">
+        <img src="assets/icons/{{dailyData()?.icon}}.png" alt="">
+        <h2>{{ dailyData()?.temp | number: '1.0-0'}}&#176;</h2>
+    </div>
+</div>
+<div class="details-panel">
+    <ul class="details details-1">
+        <li>
+            <span>Feels like:</span>
+            <span>{{ dailyData()?.feelslike | number: '1.0-0'}}&#176;</span>
+        </li>
+        <li>
+            <span>Minimal temperature:</span>
+            <span>{{ dailyData()?.tempmin | number: '1.0-0'}}&#176;</span>
+        </li>
+        <li>
+            <span>Maximal temperature:</span>
+            <span>{{ dailyData()?.tempmax | number: '1.0-0'}}&#176;</span>
+        </li>
+        <li>
+            <span>UV Index:</span>
+            <span>{{ dailyData()?.uvindex }}</span>
+        </li>
+    </ul>
+    <ul class="details">
+        <li>
+            <span>Visibility:</span>
+            <span>{{ dailyData()?.visibility }}km</span>
+        </li>
+        <li>
+            <span>Sunrise:</span>
+            <span>{{ dailyData()?.sunrise }}</span>
+        </li>
+        <li>
+            <span>Sunset:</span>
+            <span>{{ dailyData()?.sunset  }}</span>
+        </li>
+        <li>
+            <span>Pressure:</span>
+            <span>{{ dailyData()?.pressure }}mb</span>
+        </li>
+    </ul>
+    <ul class="details">
+        <li>
+            <span>Humidity:</span>
+            <span>{{ dailyData()?.humidity }}%</span>
+        </li>
+        <li>
+            <span>Percipation:</span>
+            <span>{{ dailyData()?.precip }}mm</span>
+        </li>
+        <li>
+            <span>Percipation Probability:</span>
+            <span>{{ dailyData()?.precipprob }}%</span>
+        </li>
+        <li>
+            <span>Percipation Cover:</span>
+            <span>{{ dailyData()?.precipcover }}%</span>
+        </li>
+    </ul>
+    <ul class="details">
+        <li>
+            <span>Cloud cover:</span>
+            <span>{{ dailyData()?.cloudcover }}%</span>
+        </li>
+        <li>
+            <span>Wind speed:</span>
+            <span>{{ dailyData()?.windspeed }}km/h</span>
+        </li>
+        <li>
+            <span>Wind Gust:</span>
+            <span>{{ dailyData()?.windgust }}km/h</span>
+        </li>
+        <li>
+            <span>Wind Direction:</span>
+            <span>{{ dailyData()?.winddir }}km/h</span>
+        </li>
+    </ul>
+</div>
+
+
+
+<p style="color: #ccccccb6; padding-left: 1em; padding-top: 1em; text-transform: uppercase; ">24 Hour Forecast:</p>
+<app-forecast-chart [dailyData]="dailyData()"></app-forecast-chart>
+<app-footer></app-footer>

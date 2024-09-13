@@ -6,15 +6,15 @@ import {
   AutocompleteApiResponse,
   AutocompleteResult,
 } from '../_models/location/autocomplete';
-import { environment } from '../../environments/environment.development';
+import { environment } from '../../environments/environment';
 import { TuiAlertService } from '@taiga-ui/core';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LocationService {
-  latitude: WritableSignal<number> = signal(0);
-  longitude: WritableSignal<number> = signal(0);
+  latitude: WritableSignal<number> = signal(59.9123);
+  longitude: WritableSignal<number> = signal(10.75);
   location: WritableSignal<Location | null> = signal(null);
   autocompleteResult: WritableSignal<AutocompleteResult[]> = signal([]);
 
@@ -35,8 +35,8 @@ export class LocationService {
         },
         error: (error) => {
           console.log(error);
-          this.alertService.open('Greska koji ti je to grad', {
-            label: 'Greska!',
+          this.alertService.open('Error while searching a city', {
+            label: 'Error!',
             appearance: 'error',
             autoClose: 3000,
           });
@@ -45,6 +45,7 @@ export class LocationService {
   }
 
   getLatAndLog(): void {
+    this.getLocation(this.longitude(), this.latitude());
     if (typeof navigator !== 'undefined') {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition((position) => {
@@ -67,9 +68,6 @@ export class LocationService {
       .subscribe((data) => {
         console.log(data.features[0].properties.formatted);
         this.location.set(data);
-        if (latitude == 0 || longitude == 0) {
-          this.weatherService.getWeatherData('Novi Pazar, Serbia');
-        }
         this.weatherService.getWeatherData(
           `${data.features[0].properties.city}, ${data.features[0].properties.country}`
         );

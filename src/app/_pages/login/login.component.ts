@@ -5,13 +5,15 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { AuthService } from '../../_services/auth.service';
 import { LoginDto } from '../../_dtos/loginDto';
 import { CommonModule } from '@angular/common';
+import { TextInputComponent } from '../../_forms/text-input/text-input.component';
 
 @Component({
   selector: 'app-login',
   standalone: true,
   imports: [
     RouterLink,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TextInputComponent
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
@@ -50,11 +52,10 @@ export class LoginComponent {
       next: _ => {
         console.log('Login successful');
       },
-      error: err => {
-        console.log(err);
-        this.validationErrors = err;
+      error: (err) => {
+        console.log(Object.values(err.error.errors).flatMap((v: any) => v[0]));
+        this.validationErrors = Object.values(err.error.errors).flatMap((v: any) => v[0]);
       }
-
     })
   }
 }

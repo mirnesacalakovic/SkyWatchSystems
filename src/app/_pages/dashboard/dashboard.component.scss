@@ -1,3 +1,6 @@
+:host{
+    scrollbar-width: 0px;
+}
 .navbar {
     width: 100%;
     background: rgba(0, 0, 0, 0.25);
@@ -5,7 +8,15 @@
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.18);
-    
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: #fff;
 }
 
 #locationInput {
@@ -15,9 +26,8 @@
 .autocomplete-dropdown {
     position: absolute;
     width: 20em;
-    background: rgba(6, 6, 6, 0.484);
+    background: rgba(6, 6, 6, 0.559);
     z-index: 9999;
-    
 }
 
 .autocomplete-result {
@@ -35,14 +45,14 @@
 }
 
 .autocomplete-result:hover {
-    background-color: #000000;
+    background-color: #000000de;
 }
 
 .search {
     background: rgba(0, 0, 0, 0.269);
     border: none;
     border-radius: 1em;
-    padding: 1.5em;
+    padding: 1em;
     width: 20em;
     color: #fff;
     font-size: 1em;
@@ -55,4 +65,45 @@
 
 .search::placeholder{
     color: #ccc;
+}
+.brand {
+    padding-right: 2em;
+    justify-self: center;
+    align-self: center;
+}
+.brand-font{
+    font-family: "Josefin Sans", sans-serif;
+    font-weight: 500;
+}
+.logout-text {
+    cursor: pointer;
+}
+.login-logo {
+    height: 2.5em;
+}
+.logout {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start !important;
+    padding-right: 1em;
+}
+.logout p {
+    margin-top: 0px !important;
+}
+.logout-info{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+}
+
+.logout-link {
+    cursor: pointer;
+    color: #ccc;
+    font-size: small;
+}
+.logout-link:hover {
+    color: #818181;
+    box-shadow: #fff;
 }

@@ -21,14 +21,9 @@
     }
 
     <div class="informations">
-      <h1 class="temp">{{currentData?.temp}}&#176;</h1>
+      <h1 class="temp">{{currentData?.temp | number: '1.0-0'}}&#176;</h1>
       <div class="city-time">
-        @if (locationService.location()) {
         <h1 class="name">{{ address }}</h1>
-        }@else {
-        <p>You have to enable your location for weather data.</p>
-        <!-- <p>{{weatherService.getWeatherData('Novi Pazar')}}</p>  salje infinte loop requesta -->
-        }
         <small>
           <span class="time">{{currentTime}}</span>
           -
@@ -56,12 +51,21 @@
       }
     </div>
 
-    <ul class="cities">
-      <li class="city"> <a routerLink="/dashboard">New York</a></li>
-      <li class="city"> <a routerLink="/dashboard2">California</a></li>
-      <li class="city">Paris</li>
-      <li class="city">Tokyo</li>
-    </ul>
+    @if(currentUser?.roles?.includes("Admin")) {
+      <ul class="cities">
+        <strong>
+          <li class="city"> <a routerLink="/admin/dashboard">Dashboard</a></li>
+        </strong>
+      </ul>
+      }
+      @if(currentUser?.roles?.includes("Tech")){
+        <ul class="cities">
+          <strong>
+            <li class="city"> <a routerLink="/technical/dashboard">Dashboard</a></li>
+          </strong>
+        </ul>
+      }
+    
 
     <ul class="details">
       <h4>Weather Details</h4>
@@ -70,7 +74,7 @@
       </li>
       <li>
         <span>Feels like:</span>
-        <span class="cloud">{{currentData?.feelslike}}&#176;</span>
+        <span class="cloud">{{currentData?.feelslike | number: '1.0-0'}}&#176;</span>
       </li>
       <li>
         <span>Cloudy</span>
@@ -79,6 +83,10 @@
       <li>
         <span>Humidity</span>
         <span class="humidity">{{currentData?.humidity | number: '1.0-0' }}% </span>
+      </li>
+      <li>
+        <span>Uv Index:</span>
+        <span class="humidity">{{currentData?.uvindex }} </span>
       </li>
       <li>
         <span>Wind</span>
@@ -100,11 +108,11 @@
 
 <div class="button-container">
   <button (click)="toggleCollapse()" class="set-alarm">
-    <!-- <img src="/assets/icons/icons2/alert-2.png" alt="Alerts"> -->
+    <img src="/assets/icons/icons2/alert-2.png" alt="Alerts">
      <p>Show Alarms</p>
   </button>
   <button (click)="showDialog()" class="set-alarm">
-    Set Your Own Alarm!
+    Set Your Own Alarm
   </button>
   @if (currentUser) {
   <p-dialog header="Set your own Alarm" [modal]="true" [(visible)]="visible" [style]="{ width: '40rem' }">
@@ -208,9 +216,9 @@
   @else {
   <p-dialog [modal]="true" [(visible)]="visible" [style]="{ width: '40rem' }">
     <div style=" display: flex; flex-direction: column; align-items: center; justify-content: center;">
-      <img src="/assets/icons/icons2/log-in.png" alt="">
+      <img src="/assets/icons/icons2/login.png" alt="">
       <a routerLink="/login" class="link-decoration">
-        <h2>Sign up to set your custom alarms!</h2>
+        <h2>Sign up to set your custom alarms</h2>
       </a>
     </div>
   </p-dialog>
@@ -219,7 +227,7 @@
 
   @if (currentUser) {
 
-  <button class="set-alarm alarm-link" (click)="showDialog2()">Show my Custom Alarms</button>
+  <button class="set-alarm " (click)="showDialog2()">Show my Custom Alarms</button>
 
   <p-dialog header="My Alarms:" [modal]="true" [(visible)]="visible2" [style]="{ width: '40rem' }">
     <div *ngIf="alarms && alarms.length > 0; else noAlarms" class="custom-alarms-container">
@@ -250,16 +258,12 @@
 
 
 
-
 <div [ngClass]="{'hiddenAlarm': !visibleAlarm}" >
     
   <app-activated-alarms></app-activated-alarms>
   <app-alarm></app-alarm>
 
 </div>
-
-
-
 
 <div class="slider-container">
   <p style="color: #ccccccb6; padding-left: 1em; padding-top: 1em; text-transform: uppercase; ">Hourly Forecast:</p>
@@ -276,7 +280,9 @@
 <p style="color: #ccccccb6; padding-left: 3em; padding-top: 1em; text-transform: uppercase; ">15-day Forecast:</p>
 
 <div class="daily-container">
-  @for (dailyData of weatherService.getDaysData(); track $index) {
-  <app-daily [dailyData]="dailyData"></app-daily>
-  }
+  <div *ngFor="let dailyData of weatherService.getDaysData(); let i = index" (click)="openDetails(i)" class="daily-div">
+    <app-daily [dailyData]="dailyData"></app-daily>
+  </div>
 </div>
+
+<app-footer></app-footer>

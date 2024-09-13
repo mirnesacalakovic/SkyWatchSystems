@@ -20,6 +20,8 @@ import { WindChartComponent } from "../../_components/wind-chart/wind-chart.comp
 import { CloudChartComponent } from "../../_components/cloud-chart/cloud-chart.component";
 import { UvIndexChartComponent } from "../../_components/uv-index-chart/uv-index-chart.component";
 import { SnowChartComponent } from "../../_components/snow-chart/snow-chart.component";
+import { AuthService } from '../../_services/auth.service';
+import { TooltipModule } from 'primeng/tooltip';
 
 @Component({
   selector: 'app-dashboard',
@@ -45,7 +47,9 @@ export class DashboardComponent {
   public toggle = false;
   public barChartPlugins = [];
   public barChartData: ChartConfiguration<'bar'>['data'] = {
-    labels: [],
+    labels: [
+      TooltipModule
+    ],
     datasets: [
       {
         data: [],
@@ -63,8 +67,9 @@ export class DashboardComponent {
   };
 
   constructor(
-    private historyService: HistoryService,
-    private locationService: LocationService
+    public historyService: HistoryService,
+    private locationService: LocationService,
+    private authService: AuthService
   ) {}
 
   callForAutocomplete() {
@@ -93,29 +98,8 @@ export class DashboardComponent {
         });
     }
   }
-  // ngOnInit(): void {
-  //   const location = this.locationService.location();
-  //   if (location) {
-  //     this.historyService
-  //       .getHistoryData(location.features[0].properties.formatted)
-  //       .subscribe((data) => {
-  //         console.log('HISTORY DATA: ', data);
-  //         this.historyService.historyData.set(data);
-  //         this.barChartData = {
-  //           labels:
-  //             this.historyService.historyData()?.days?.map((d) => d.datetime) ??
-  //             [],
-  //           datasets: [
-  //             {
-  //               data:
-  //                 this.historyService
-  //                   .historyData()
-  //                   ?.days?.map((d) => [d.tempmin, d.tempmax]) ?? [],
-  //               label: 'Temperature',
-  //             },
-  //           ],
-  //         };
-  //       });
-  //   }
-  // }
+  logout() {
+    this.authService.logout();
+  }
+  
 }

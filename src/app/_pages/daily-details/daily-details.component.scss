@@ -1,0 +1,95 @@
+.navbar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.navbar a {
+    text-decoration: none;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+}
+.navbar h2, p {
+    color: #fff;
+}
+.brand {
+    padding-top: 2em;
+    justify-self: center;
+    align-self: center;
+
+}
+.brand-font{
+    font-family: "Josefin Sans", sans-serif;
+    font-weight: 500;
+    font-size: large;
+}
+.brand-font:hover{
+    color: grey;
+}
+.main{
+    display: flex;
+    gap: 4em;
+}
+.main-temp {
+    display: flex;
+    flex-direction: column;
+    color: #fff;
+}
+.main-temp h2{
+    font-size: 3.5em;
+    font-weight: 600; 
+    margin: 5px !important;
+}
+.main-temp img{
+    width: 70px;
+}
+.details-panel {
+    display: flex;
+    gap: 1em;
+    color: #ccc;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.details-panel ul li {
+    color: #d4d4d4;
+    margin: 0.7em;
+}
+.details {
+    border-left: 1px solid #ccc;
+    height: 11.5em;
+    display: flex;
+    flex-direction: column;
+    
+}
+.details li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 3em;
+}
+.details-1{
+    border: none;
+}
+
+@media screen and (max-width: 800px) {
+    .details-1{
+        border-left: 1px solid #ccc;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    :host {
+        font-size: 12px;
+    }
+    .details-1{
+        border-left: 1px solid #ccc;
+    }
+}
+
+@media screen and (max-height: 300px) {
+    .details-1{
+        border-left: 1px solid #ccc;
+    }
+}

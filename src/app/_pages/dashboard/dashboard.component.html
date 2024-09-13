@@ -9,21 +9,35 @@
             </button>
         </div>
     </div>
+    <div style="display: flex;">
+        <div class="brand">
+            <a href="#" class="brand-font">Sky Watch Systems</a>
+        </div>
+        <div class="logout">
+            <div class="logout-info">
+              <img class="login-logo" src="/assets/icons/loggedIn.png" alt="login" />
+            </div>
+            <a class="logout-link" (click)="logout()">
+              <p>Log out</p>
+            </a>
+        </div>
+    </div>
+    
 </div>
 
 @if (toggle === true) {
-    
-        <app-temp-chart></app-temp-chart>
-        <app-uv-index-chart></app-uv-index-chart>
-        <app-percip-chart></app-percip-chart>
-        <app-humidity-chart></app-humidity-chart>
-        <app-cloud-chart></app-cloud-chart>
-        <app-wind-chart></app-wind-chart>
-        <app-snow-chart></app-snow-chart>
+    <h2 style="color: #fff; margin-left: 1em;">{{historyService.historyData()?.resolvedAddress}}</h2>
+    <app-temp-chart></app-temp-chart>
+    <app-uv-index-chart></app-uv-index-chart>
+    <app-percip-chart></app-percip-chart>
+    <app-humidity-chart></app-humidity-chart>
+    <app-cloud-chart></app-cloud-chart>
+    <app-wind-chart></app-wind-chart>
+    <app-snow-chart></app-snow-chart>
 
 } @else {
     <div style=" display: flex; align-content: center; justify-content: center;">
-        <h2 style="color: #ccc">Search for a location to repesent a chart data</h2>
+        <h2 style="color: #fff">Search for a location to repesent a chart data</h2>
     </div>
 
 }

@@ -1,0 +1,78 @@
+.footer{
+    width: 100%;
+    height: 25em;
+    margin-top: 3em;
+    background: transparent;
+    border: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+}
+
+.left-container {
+    width: 50%;
+    height: 20em;
+    border-radius: 2em;
+    background: rgba(0, 0, 0, 0.25);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+.right-container{
+    width: 35%;
+    height: 20em;
+    border-radius: 2em;
+    background-image: url('/assets/images/day/footer.jpg');
+    background-size: cover;
+}
+.right-container h2{
+    font-family: "Josefin Sans", sans-serif;
+    color: #000000d0;
+    font-variant: all-petite-caps;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.newsletter p{
+    text-transform: uppercase;
+}
+
+.newsletter input, button{
+    background: transparent;
+    border: 1px solid #ccc;
+    border-radius: 16px;
+    padding: 1em;
+}
+.newsletter {
+    color: #ccc;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 1em;
+    margin-top: 1.5em;
+}
+.newsletter button {
+    cursor: pointer;
+    color: #fff;
+    border-radius: 0 16px 16px 0;
+}
+.newsletter input {
+    border-radius: 16px 0px 0px 16px;
+}
+
+.brand-font{
+    font-family: "Josefin Sans", sans-serif;
+    color: #fff;
+    font-size: 4em;
+    text-align: center;
+
+}

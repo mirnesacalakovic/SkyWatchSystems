@@ -1,0 +1,29 @@
+<div class="field">
+    <input required="" [type]="type" class="input" [formControl]="control">
+    <span class="span">
+        <ng-content></ng-content>
+    </span>
+    <label class="label">{{ label }}</label>
+</div>
+@if (control.touched && control.errors?.['required']) {
+<div class="invalid-feedback">
+    Please enter {{label}}
+</div>
+}
+@if (control.touched && control.errors?.['minlength']) {
+<div class="invalid-feedback">
+    {{label}} must be at least {{control.errors?.['minlength'].requiredLength}} characters
+</div>
+}
+
+@if (control.touched && control.errors?.['maxlength']) {
+<div class="invalid-feedback">
+    {{label}} must be at most {{control.errors?.['maxlength'].requiredLength}} characters
+</div>
+}
+
+@if (control.touched && control.errors?.['notMatching']) {
+<div class="invalid-feedback">
+    Passwords do not match
+</div>
+}

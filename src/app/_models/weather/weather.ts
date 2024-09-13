@@ -13,16 +13,16 @@ export interface Weather {
   currentConditions: CurrentConditions;
 }
 export interface Alert {
-  event: string
-  headline: string
-  ends: string
-  endsEpoch: number
-  onset: string
-  onsetEpoch: number
-  id: string
-  language: string
-  link: string
-  description: string
+  event: string;
+  headline: string;
+  ends: string;
+  endsEpoch: number;
+  onset: string;
+  onsetEpoch: number;
+  id: string;
+  language: string;
+  link: string;
+  description: string;
 }
 
 export interface Day {
@@ -94,34 +94,12 @@ export interface Hour {
 }
 
 export interface Stations {
-  LYKV: Lykv;
-  BKPR: Bkpr;
-  D3068: D3068;
+  LYKV: Station;
+  BKPR: Station;
+  D3068: Station;
 }
 
-export interface Lykv {
-  distance: number;
-  latitude: number;
-  longitude: number;
-  useCount: number;
-  id: string;
-  name: string;
-  quality: number;
-  contribution: number;
-}
-
-export interface Bkpr {
-  distance: number;
-  latitude: number;
-  longitude: number;
-  useCount: number;
-  id: string;
-  name: string;
-  quality: number;
-  contribution: number;
-}
-
-export interface D3068 {
+export interface Station {
   distance: number;
   latitude: number;
   longitude: number;

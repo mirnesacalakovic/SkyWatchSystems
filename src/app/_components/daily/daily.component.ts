@@ -20,7 +20,6 @@ export class DailyComponent {
   constructor(public weatherService: WeatherService, private renderer: Renderer2) {}
 
   get getDays(): Day[] {
-    // console.log(this.weatherService.weatherData()?.days ?? []);
     return this.weatherService.weatherData()?.days ?? [];
   }
 
@@ -29,24 +28,15 @@ export class DailyComponent {
   }
 
   get todaysDate() {
-    // console.log(this.dateToObj.getDate())
-    // console.log(new Date().getDate())
     if(new Date().getDate() == this.dateToObj.getDate())
       return true;
     return false;
   }
 
   addClass() {
-
     if (typeof document !== 'undefined') {
-      // Your code that accesses `document` here
       const card = document.getElementById("daily-card");
       this.renderer.addClass(card, 'change-background');
-      // return document.getElementById('weatherImage');
     }
-  
-    
   }
-
-  
 }

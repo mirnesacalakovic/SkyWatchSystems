@@ -46,14 +46,31 @@ export class UvIndexChartComponent {
     },
     // We use these empty structures as placeholders for dynamic theming.
     scales: {
-      x: {},
-      y: {
-        min: 0
+      x: {
+        grid: {
+          color: 'rgba(239, 246, 249, 0.2)', // Boja pomoćnih linija za x osu
+        },
+        ticks: {
+          color: 'rgb(239, 246, 249)', // Boja teksta za x osu
+        },
       },
-
+      y: {
+        min: 0,
+        grid: {
+          color: 'rgba(239, 246, 249, 0.2)', // Boja pomoćnih linija za y osu
+        },
+        ticks: {
+          color: 'rgb(239, 246, 249)', // Boja teksta za y osu
+        },
+      },
     },
     plugins: {
-      legend: { display: true },
+      legend: { 
+        display: true,
+          labels: {
+            color: 'rgb(239, 246, 249)', // Boja teksta za legendu (label dataset-a)
+          }
+       },
     },
     responsive: true,
     maintainAspectRatio: false, 

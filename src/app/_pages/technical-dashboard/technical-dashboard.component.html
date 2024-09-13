@@ -1,0 +1,87 @@
+<div class="navbar">
+    <div id="locationInput">
+        <input type="text" class="search" name="location" placeholder="Search for location" [(ngModel)]="locationQuery"
+            (ngModelChange)="callForAutocomplete()" autocomplete="off">
+        <div *ngIf="locationService.autocompleteResult().length > 0" id="dropdown" class="autocomplete-dropdown">
+            <button *ngFor="let result of autocompleteResults; let i = index" class="autocomplete-result"
+                (click)="locationSelected(result)">
+                {{ result.city }}, {{ result.country }}
+            </button>
+        </div>
+    </div>
+    <div style="display: flex;">
+        <div class="brand">
+            <a href="#" class="brand-font">Sky Watch Systems</a>
+        </div>
+        <div class="logout">
+            <div class="logout-info">
+              <img class="login-logo" src="/assets/icons/loggedIn.png" alt="login" />
+            </div>
+            <a class="logout-link" (click)="logout()">
+              <p>Log out</p>
+            </a>
+        </div>
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="map">
+        <app-map></app-map>
+    </div>
+
+    <div class="details-panel">
+        <h2>Stations details</h2>
+        <div class="agenda">
+            <h5>AGENDA:</h5>
+            <div class="label">
+                <label>Location </label>
+                <img src="/assets/icons/icons2/location.png" alt="location-icon" style="height: 30px; width: 30px;">
+            </div>
+            <div class="label">
+                <label>Stations </label>
+                <img src="/assets/icons/icons2/station.png" alt="location-icon" style="height: 30px; width: 30px;">
+            </div>
+        </div>
+
+        <div class="info">
+            <h3>{{weatherService.weatherData()?.address}}</h3>
+            <p>Timezone: {{weatherService.weatherData()?.timezone}}</p>
+            <p>Current temperature: {{weatherService.weatherData()?.currentConditions?.temp | number: '1.0-0'}}&#176;</p>
+        </div>
+        
+        @for (station of stations; track $index) {
+        <ul class="details">
+            <h2>{{station.name}}</h2>
+            <li>
+                <span>Latitude:</span>
+                <span>{{station.latitude}}</span>
+            </li>
+            <li>
+                <span>Longitude:</span>
+                <span>{{station.longitude}}</span>
+            </li>
+            <li>
+                <span>Distance:</span>
+                <span>{{station.distance}} km</span>
+            </li>
+            <li class="quality-warning">
+                <span>Quality:</span>
+                <span>{{station.quality}}</span>
+            </li>
+            <p *ngIf="station.quality === 0" class="warning">
+                <strong>Warning:</strong> Data quality is low, the information may not be accurate.
+            </p>
+            <li>
+                <span>Contribution:</span>
+                <span>{{station.contribution}}</span>
+            </li>
+            <li>
+                <span>Use Count:</span>
+                <span>{{station.useCount}}</span>
+            </li>
+        </ul>
+        }
+
+    </div>
+</div>

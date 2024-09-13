@@ -9,7 +9,14 @@ import {
 import { WeatherService } from '../../_services/weather.service';
 import { LocationService } from '../../_services/location.service';
 import { CurrentConditions, Day, Weather } from '../../_models/weather/weather';
-import { DatePipe, DecimalPipe, JsonPipe, NgClass, NgFor, NgIf } from '@angular/common';
+import {
+  DatePipe,
+  DecimalPipe,
+  JsonPipe,
+  NgClass,
+  NgFor,
+  NgIf,
+} from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 import { HourlyComponent } from '../../_components/hourly/hourly.component';
 import {
@@ -35,7 +42,9 @@ import {
   UserAlarmConditions,
 } from '../../_models/alarm/user-alarm';
 import { DashboardComponent } from '../dashboard/dashboard.component';
-import { ActivatedAlarmsComponent } from "../../_components/activated-alarms/activated-alarms.component";
+import { ActivatedAlarmsComponent } from '../../_components/activated-alarms/activated-alarms.component';
+import { ToastrService } from 'ngx-toastr';
+import { FooterComponent } from "../../_components/footer/footer.component";
 
 interface SwiperNativeEl {
   swiper: Swiper;
@@ -61,7 +70,8 @@ interface SwiperNativeEl {
     JsonPipe,
     DashboardComponent,
     NgClass,
-    ActivatedAlarmsComponent
+    ActivatedAlarmsComponent,
+    FooterComponent
 ],
   providers: [DatePipe],
   templateUrl: './weather.component.html',
@@ -138,14 +148,14 @@ export class WeatherComponent implements OnInit {
     this.visible2 = true;
   }
   constructor(
-    private httpClient: HttpClient,
     public weatherService: WeatherService,
     public locationService: LocationService,
     public authService: AuthService,
     public alarmService: AlarmService,
     public router: Router,
     private renderer: Renderer2,
-    private datePipe: DatePipe
+    private datePipe: DatePipe,
+    private toastr: ToastrService
   ) {
     effect(() => {
       const swiperEl = this.swiperContainer().nativeElement;
@@ -314,6 +324,8 @@ export class WeatherComponent implements OnInit {
       .subscribe((response) => {
         // alert(`${alarmType.charAt(0).toUpperCase() + alarmType.slice(1)} alarm saved!`);
         if (this.currentUser) this.alarmService.loadAlarms(this.currentUser.id);
+        this.toastr.success('You created a custom alarm successfully!');
+        this.visible = false;
       });
   }
 
@@ -362,7 +374,7 @@ export class WeatherComponent implements OnInit {
       this.locationQuery = `${autocompleteResult.city}, ${autocompleteResult.country}`;
       this.locationService.autocompleteResult.set([]);
       this.weatherService.getWeatherData(this.locationQuery);
-      this.renderer.addClass(dropdown, 'hide');
+
       // return document.getElementById('weatherImage');
     }
     return null;
@@ -478,5 +490,7 @@ export class WeatherComponent implements OnInit {
     this.visibleAlarm = !this.visibleAlarm;
   }
 
-
+  openDetails(index: number) {
+    this.router.navigate(['/daily-details', index]); // Navigacija na novu stranicu sa ID-jem
+  }
 }

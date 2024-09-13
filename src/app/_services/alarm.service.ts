@@ -10,7 +10,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { CreateUserAlarm, UserAlarm } from '../_models/alarm/user-alarm';
 import { CurrentConditions } from '../_models/weather/weather';
-import { environment } from '../../environments/environment.development';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -57,7 +57,7 @@ export class AlarmService {
   }
 
   loadAlarms(userId: string) {
-    this.getAlarmsApi(userId || '').subscribe(
+    this.getAlarmsApi(userId).subscribe(
       (data: UserAlarm[]) => {
         this.userAlarms.set(data);
       },
